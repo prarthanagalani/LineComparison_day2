@@ -19,6 +19,12 @@ class LineComparison {
         return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
     }
 
+    // Uc2: Check if two lines are equal or not based on end points
+    public boolean equals(LineComparison otherLine) {
+        return this.x1 == otherLine.x1 && this.y1 == otherLine.y1 &&
+               this.x2 == otherLine.x2 && this.y2 == otherLine.y2;
+    }
+
     public static void main(String[] args) {
 
         // welcome message on main branch
@@ -30,9 +36,22 @@ class LineComparison {
         System.out.println("Enter x1,y1,x2,y2 co-ordinates for line1: ");
         int x11 = sc.nextInt(), y11 = sc.nextInt(), x12 = sc.nextInt(), y12 = sc.nextInt();
 
-        LineComparison line1 = new LineComparison(x11, y11, x12, y12);
+         // taking input from user for line2
+        System.out.println("Enter x1,y1,x2,y2 co-ordinates for line1: ");
+        int x21 = sc.nextInt(),y21 = sc.nextInt(),x22=sc.nextInt(),y22=sc.nextInt() ;
 
+        LineComparison line1 = new LineComparison(x11, y11, x12, y12);
+        LineComparison line2 = new LineComparison(x21, y21, x22, y22);
+        
+        //uc1: we are calling calculateLength() function to cal length of line1
         System.out.println("Length of Line 1: " + line1.calculateLength());
+        
+        //uc2: we are calling equals() function of object line1 and will pass line 2 object as argument in it.
+        if (line1.equals(line2)) {
+            System.out.println("Line 1 is equal to Line 2.");
+        } else {
+            System.out.println("Line 1 is not equal to Line 2.");
+        }
 
         sc.close();
 

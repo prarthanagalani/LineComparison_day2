@@ -25,6 +25,22 @@ class LineComparison {
                this.x2 == otherLine.x2 && this.y2 == otherLine.y2;
     }
 
+    // Uc3: Compare lengths of two lines based on end points
+    public int compareTo(LineComparison otherLine) {
+        //length of line1
+        double thisLength = calculateLength();
+        //length of line2
+        double otherLength = otherLine.calculateLength();
+
+        if (thisLength < otherLength) {
+            return -1;
+        } else if (thisLength > otherLength) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
     public static void main(String[] args) {
 
         // welcome message on main branch
@@ -51,6 +67,18 @@ class LineComparison {
             System.out.println("Line 1 is equal to Line 2.");
         } else {
             System.out.println("Line 1 is not equal to Line 2.");
+        }
+
+        //uc3: we are calling compareTo() function of object line1 and will pass line 2 object as an argument in it.
+        int comparisonResult = line1.compareTo(line2);
+
+        //decide length based on return value
+        if (comparisonResult < 0) {
+            System.out.println("Line 1 is shorter than Line 2.");
+        } else if (comparisonResult > 0) {
+            System.out.println("Line 1 is longer than Line 2.");
+        } else {
+            System.out.println("Line 1 is equal in length to Line 2.");
         }
 
         sc.close();

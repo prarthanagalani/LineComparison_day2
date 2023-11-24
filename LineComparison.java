@@ -2,27 +2,53 @@ package LineComparison_day2;
 
 import java.util.Scanner;
 
+class Point{
+
+    private double x,y;
+    
+    // constructor of Point class
+    public Point(double x,double y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+
+    // Getter methods for x and y coordinates
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+}
+
 class LineComparison {
 
-    private double x1, y1, x2, y2;
+    private Point starPoint;
+    private Point endPoint;
+
+   
 
     // constructor for this class to initialize points for given line
-    public LineComparison(double x1, double y1, double x2, double y2) {
-        this.x1 = x1;
-        this.y1 = y1;
-        this.x2 = x2;
-        this.y2 = y2;
+    public LineComparison(Point starPoint, Point endPoint) {
+        this.starPoint = starPoint;
+        this.endPoint = endPoint;
     }
 
     // Uc1: Calculate the length of a line
     public double calculateLength() {
+        double x1 = starPoint.getX();
+        double y1 = starPoint.getY();
+        double x2 = endPoint.getX();
+        double y2 = endPoint.getY();
         return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
     }
 
     // Uc2: Check if two lines are equal or not based on end points
     public boolean equals(LineComparison otherLine) {
-        return this.x1 == otherLine.x1 && this.y1 == otherLine.y1 &&
-               this.x2 == otherLine.x2 && this.y2 == otherLine.y2;
+        return this.starPoint.getX() == otherLine.starPoint.getX() && this.starPoint.getY() == otherLine.starPoint.getY() &&
+               this.endPoint.getX() == otherLine.endPoint.getX() && this.endPoint.getY() == otherLine.endPoint.getY();
     }
 
     // Uc3: Compare lengths of two lines based on end points
@@ -52,12 +78,18 @@ class LineComparison {
         System.out.println("Enter x1,y1,x2,y2 co-ordinates for line1: ");
         int x11 = sc.nextInt(), y11 = sc.nextInt(), x12 = sc.nextInt(), y12 = sc.nextInt();
 
+        Point starPoint1 = new Point(x11, y11);
+        Point endPoint1 = new Point(x12,y12);
+
          // taking input from user for line2
         System.out.println("Enter x1,y1,x2,y2 co-ordinates for line1: ");
         int x21 = sc.nextInt(),y21 = sc.nextInt(),x22=sc.nextInt(),y22=sc.nextInt() ;
 
-        LineComparison line1 = new LineComparison(x11, y11, x12, y12);
-        LineComparison line2 = new LineComparison(x21, y21, x22, y22);
+        Point starPoint2 = new Point(x21,y21);
+        Point endPoint2 = new Point(x22,y22);
+
+        LineComparison line1 = new LineComparison(starPoint1,endPoint1);
+        LineComparison line2 = new LineComparison(starPoint2,endPoint2);
         
         //uc1: we are calling calculateLength() function to cal length of line1
         System.out.println("Length of Line 1: " + line1.calculateLength());
